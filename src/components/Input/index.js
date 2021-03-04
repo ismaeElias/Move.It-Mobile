@@ -5,13 +5,25 @@ import {
   Text,
   TouchableOpacity,
   StyleSheet,
-  Alert
+  Alert,
 } from 'react-native';
 import Arrow from '../../public/arrow.svg';
 import LinearGradient from 'react-native-linear-gradient';
+import {GithubApi} from '../../services/api';
 
 function Input({navigation}) {
   const [user, setUser] = useState('');
+
+  async function handlerGetUser(user) {
+    try {
+      await GithubApi.get(`/users/${user}`).then(response => {
+        navigation.push('Home');
+        console.log(response.data.name);
+      })
+    } catch (error) {
+      console.warn(error);
+    }
+  }
   return (
     <View style={styles.container}>
       <LinearGradient
@@ -32,8 +44,9 @@ function Input({navigation}) {
       <TouchableOpacity
         style={[styles.button]}
         onPress={() => {
-          Alert.alert(user);
-          navigation.push('Home')
+          if(user){
+            handlerGetUser(user);
+          }
         }}>
         <Text>
           <Arrow />
@@ -71,7 +84,7 @@ const styles = StyleSheet.create({
     paddingLeft: 5,
     borderTopStartRadius: 5,
   },
-  buttonHover : {
-    backgroundColor: 'red'
-  }
+  buttonHover: {
+    backgroundColor: 'red',
+  },
 });
