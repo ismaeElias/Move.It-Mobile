@@ -1,10 +1,11 @@
 import React from 'react'
 import {View, Text,StyleSheet} from 'react-native';
+import ExperienceBar from '../../components/ExperienceBar';
 function Home(){
 
   return(
     <View style={styles.container}>
-      <Text>Home</Text>
+      <ExperienceBar/>
     </View>
   );
 }
