@@ -10,7 +10,7 @@ import {
 import Arrow from '../../public/arrow.svg';
 import LinearGradient from 'react-native-linear-gradient';
 
-function Input() {
+function Input({navigation}) {
   const [user, setUser] = useState('');
   return (
     <View style={styles.container}>
@@ -29,9 +29,12 @@ function Input() {
           }}
         />
       </LinearGradient>
-      <TouchableOpacity style={styles.button} onPress={()=> {
-        Alert.alert(user);
-      }}>
+      <TouchableOpacity
+        style={[styles.button]}
+        onPress={() => {
+          Alert.alert(user);
+          navigation.push('Home')
+        }}>
         <Text>
           <Arrow />
         </Text>
@@ -55,17 +58,20 @@ const styles = StyleSheet.create({
     top: 0,
     right: 0,
     width: 50,
-    height: '100%',
+    height: 50,
     alignItems: 'center',
     justifyContent: 'center',
     borderTopRightRadius: 5,
-    borderBottomRightRadius: 5
+    borderBottomRightRadius: 5,
   },
   input: {
     color: '#B2B9FF',
     width: '100%',
     paddingRight: 60,
     paddingLeft: 5,
-    borderTopStartRadius: 5
+    borderTopStartRadius: 5,
   },
+  buttonHover : {
+    backgroundColor: 'red'
+  }
 });
