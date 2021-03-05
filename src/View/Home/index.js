@@ -1,6 +1,7 @@
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
 import Challengers from '../../components/Challengers';
+import Countdown from '../../components/Countdown';
 import ExperienceBar from '../../components/ExperienceBar';
 import Profile from '../../components/Profile';
 function Home() {
@@ -10,6 +11,7 @@ function Home() {
         <ExperienceBar />
         <Profile />
         <Challengers />
+        <Countdown />
       </View>
     </View>
   );
@@ -20,7 +22,7 @@ export default Home;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F2F3F5',
+    backgroundColor: '#E5E5E5',
   },
   profile: {
     height: 100,

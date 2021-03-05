@@ -21,7 +21,9 @@ const styles = StyleSheet.create({
     width: '100%',
     backgroundColor: '#D9D9D9',
     padding: 10,
-    justifyContent : 'center'
+    justifyContent : 'center',
+    borderBottomEndRadius: 5,
+    borderBottomStartRadius: 5
   },
   challenger : {
     alignItems: 'center',
