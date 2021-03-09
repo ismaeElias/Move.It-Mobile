@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 
 import {View, Text, StyleSheet} from 'react-native';
+import { CountdownContext } from '../../services/context/countdown';
 
 function Countdown() {
-  const [time, setTime] = useState( 0.1 * 60);
-  const minutes = Math.floor(time / 60);
-  const seconds = time % 60;
+  const {minutes,seconds} = useContext(CountdownContext);
 
   const [minutesLeft, minutesRight] = String(minutes).padStart(2 , '0').split('');
   const [secondsLeft, secondsRight] = String(seconds).padStart(2 , '0').split('');

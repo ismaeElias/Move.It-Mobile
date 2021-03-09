@@ -5,15 +5,19 @@ import Challengers from '../../components/Challengers';
 import Countdown from '../../components/Countdown';
 import ExperienceBar from '../../components/ExperienceBar';
 import Profile from '../../components/Profile';
+import {CountdownProvider} from '../../services/context/countdown';
+
 function Home() {
   return (
     <View style={styles.container}>
       <View style={styles.profile}>
         <ExperienceBar />
         <Profile />
-        <Challengers />
-        <Countdown />
-        <ButtonStart title={'Iniciar novo ciclo'}/>
+        <CountdownProvider>
+          <Challengers />
+          <Countdown />
+          <ButtonStart title={'Iniciar novo ciclo'} />
+        </CountdownProvider>
       </View>
     </View>
   );
