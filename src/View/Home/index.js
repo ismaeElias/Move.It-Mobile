@@ -1,5 +1,6 @@
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
+import ButtonStart from '../../components/Button';
 import Challengers from '../../components/Challengers';
 import Countdown from '../../components/Countdown';
 import ExperienceBar from '../../components/ExperienceBar';
@@ -12,6 +13,7 @@ function Home() {
         <Profile />
         <Challengers />
         <Countdown />
+        <ButtonStart title={'Iniciar novo ciclo'}/>
       </View>
     </View>
   );

@@ -1,17 +1,24 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 import {View, Text, StyleSheet} from 'react-native';
 
 function Countdown() {
+  const [time, setTime] = useState( 0.1 * 60);
+  const minutes = Math.floor(time / 60);
+  const seconds = time % 60;
+
+  const [minutesLeft, minutesRight] = String(minutes).padStart(2 , '0').split('');
+  const [secondsLeft, secondsRight] = String(seconds).padStart(2 , '0').split('');
+
   return (
     <View style={styles.container}>
-      <Text style={styles.countdown}>0</Text>
-      <Text style={styles.countdown}>0</Text>
+      <Text style={styles.countdown}>{minutesLeft}</Text>
+      <Text style={styles.countdown}>{minutesRight}</Text>
 
       <Text style={{fontSize: 60, color: '#2E384D'}}>:</Text>
 
-      <Text style={styles.countdown}>0</Text>
-      <Text style={styles.countdown}>0</Text>
+      <Text style={styles.countdown}>{secondsLeft}</Text>
+      <Text style={styles.countdown}>{secondsRight}</Text>
     </View>
   );
 }
