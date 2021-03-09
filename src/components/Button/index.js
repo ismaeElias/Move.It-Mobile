@@ -2,16 +2,30 @@ import React, {useContext} from 'react';
 
 import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
 import PlayArrow from '../../public/play-arrow.svg';
-import { CountdownContext } from '../../services/context/countdown';
+import {CountdownContext} from '../../services/context/countdown';
 
-function ButtonStart({title}) {
-  const { startCountdown } = useContext(CountdownContext);
+function ButtonStart({title, ativo, terminou}) {
+  const {startCountdown, resetCountdown} = useContext(CountdownContext);
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={styles.button} onPress={()=>{
-        startCountdown();
-      }}>
+      <TouchableOpacity
+        style={{
+          padding: 15,
+          backgroundColor: `${ativo || terminou ? 'red' : '#5965E0'}`,
+          alignItems: 'center',
+          justifyContent: 'center',
+          width: '100%',
+          flexDirection : 'row',
+          borderRadius : 5
+        }}
+        onPress={() => {
+          if (ativo || terminou) {
+            resetCountdown();
+          } else {
+            startCountdown();
+          }
+        }}>
         <Text style={styles.text}>{title}</Text>
         <PlayArrow />
       </TouchableOpacity>
@@ -27,8 +41,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   button: {
-    backgroundColor: '#5965E0',
     padding: 15,
+    backgroundColor: '#5965E0',
     alignItems: 'center',
     justifyContent: 'center',
     width: '100%',
