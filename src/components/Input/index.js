@@ -5,21 +5,28 @@ import {
   Text,
   TouchableOpacity,
   StyleSheet,
-  Alert,
+  
 } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { GithubApi } from '../../services/api';
+
 import Arrow from '../../public/arrow.svg';
 import LinearGradient from 'react-native-linear-gradient';
-import {GithubApi} from '../../services/api';
+
 
 function Input({navigation}) {
   const [user, setUser] = useState('');
 
   async function handlerGetUser(user) {
     try {
-      await GithubApi.get(`/users/${user}`).then(response => {
+      await GithubApi.get(`/users/${user}`).then(async (response) => {
+        
+        const { data } = response;
+        const values = JSON.stringify({ nome : data.name ,foto : data.avatar_url})
+        await AsyncStorage.setItem('@User_info', values);
+        
         navigation.push('Home');
-        console.log(response.data.name);
-      })
+      });
     } catch (error) {
       console.warn(error);
     }
@@ -44,7 +51,7 @@ function Input({navigation}) {
       <TouchableOpacity
         style={[styles.button]}
         onPress={() => {
-          if(user){
+          if (user) {
             handlerGetUser(user);
           }
         }}>

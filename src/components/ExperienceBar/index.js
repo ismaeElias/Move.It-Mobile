@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     paddingLeft: 5,
     paddingRight: 5,
-    marginBottom: 20
+    marginBottom: 25
   },
   experienceBar: {
     backgroundColor: '#DCDDE0',

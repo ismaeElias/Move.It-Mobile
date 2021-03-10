@@ -4,7 +4,6 @@ import {
   Text,
   StyleSheet,
   KeyboardAvoidingView,
-  Button,
 } from 'react-native';
 
 import Input from '../../components/Input';
