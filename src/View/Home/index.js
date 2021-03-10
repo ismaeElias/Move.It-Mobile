@@ -6,21 +6,24 @@ import Challengers from '../../components/Challengers';
 import Countdown from '../../components/Countdown';
 import ExperienceBar from '../../components/ExperienceBar';
 import Profile from '../../components/Profile';
+import { ChallengerContext } from '../../services/context/challenger';
 import {CountdownContext} from '../../services/context/countdown';
 
 function Home() {
   const {isActive, hasFinished} = useContext(CountdownContext);
+  const { setUser } = useContext(ChallengerContext);
 
   async function handlerGetUser(){
     const value = await AsyncStorage.getItem('@User_info');
-    console.log('====================================');
-    console.log(JSON.parse(value));
-    console.log('====================================');
+    const data = JSON.parse(value);
+
+    setUser(data);
   }
+
   useEffect(()=> {
     handlerGetUser();
-   
-  },[])
+  },[]);
+
   return (
     <View style={styles.container}>
       <View style={styles.profile}>

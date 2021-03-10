@@ -1,20 +1,22 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 import {View, Text, StyleSheet, Image} from 'react-native';
 import Level from '../../public/level.svg';
-import Challengers from '../Challengers';
+import { ChallengerContext } from '../../services/context/challenger';
+import GithubLogo from '../../public/github.png';
 
 function Profile() {
+  const { user, level } = useContext(ChallengerContext);
   return (
       <View style={styles.profile}>
         <Image
           style={styles.image}
-          source={{uri: 'https://github.com/ismaeElias.png'}}
+          source={{uri: `${user.foto || GithubLogo}`}}
         />
         <View style={styles.containerLevel}>
-          <Text style={styles.nameUser}>Ismael Elias</Text>
+          <Text style={styles.nameUser}>{user.nome}</Text>
           <Text>
-            <Level /> Level 1
+            <Level /> Level {level} 
           </Text>
         </View>
       </View>
