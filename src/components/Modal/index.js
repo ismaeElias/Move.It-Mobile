@@ -1,11 +1,12 @@
-import React, { useContext } from 'react';
+import React, {useContext} from 'react';
 import {Modal, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import Body from '../../public/body.svg';
-import { ChallengerContext } from '../../services/context/challenger';
+import {ChallengerContext} from '../../services/context/challenger';
+import {CountdownContext} from '../../services/context/countdown';
 
 function ModalChallenger() {
-  const { setModalVisible, modalVisible } = useContext(ChallengerContext);
-  
+  const {setModalVisible, modalVisible} = useContext(ChallengerContext);
+  const {resetCountdown} = useContext(CountdownContext);
   return (
     <>
       <View style={styles.centeredView}>
@@ -30,13 +31,23 @@ function ModalChallenger() {
               <View style={styles.containerButtons}>
                 <TouchableOpacity
                   style={styles.button}
-                  onPress={() => setModalVisible(!modalVisible)}>
-                  <Text style={[styles.textStyle, styles.failedButton]}>Falhei</Text>
+                  onPress={() => {
+                    setModalVisible(!modalVisible);
+                    resetCountdown();
+                  }}>
+                  <Text style={[styles.textStyle, styles.failedButton]}>
+                    Falhei
+                  </Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                   style={styles.button}
-                  onPress={() => setModalVisible(!modalVisible)}>
-                  <Text style={[styles.textStyle, styles.completeButton]}>Completei</Text>
+                  onPress={() => {
+                    setModalVisible(!modalVisible);
+                    resetCountdown();
+                  }}>
+                  <Text style={[styles.textStyle, styles.completeButton]}>
+                    Completei
+                  </Text>
                 </TouchableOpacity>
               </View>
             </View>
@@ -100,7 +111,7 @@ const styles = StyleSheet.create({
   },
   containerButtons: {
     borderTopWidth: 1,
-    borderTopColor : '#CFCFCF',
+    borderTopColor: '#CFCFCF',
     flexDirection: 'row',
   },
   buttonOpen: {
@@ -108,8 +119,8 @@ const styles = StyleSheet.create({
   },
   completeButton: {
     color: '#3FB023',
-    borderLeftWidth : 1,
-    borderLeftColor : '#555555',
+    borderLeftWidth: 1,
+    borderLeftColor: '#555555',
   },
   failedButton: {
     color: '#E83F5B',
