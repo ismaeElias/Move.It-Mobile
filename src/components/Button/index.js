@@ -16,8 +16,8 @@ function ButtonStart({title, ativo, terminou}) {
           alignItems: 'center',
           justifyContent: 'center',
           width: '100%',
-          flexDirection : 'row',
-          borderRadius : 5
+          flexDirection: 'row',
+          borderRadius: 5,
         }}
         onPress={() => {
           if (ativo || terminou) {

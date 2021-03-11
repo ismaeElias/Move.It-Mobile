@@ -23,7 +23,8 @@ const styles = StyleSheet.create({
     padding: 10,
     justifyContent : 'center',
     borderBottomEndRadius: 5,
-    borderBottomStartRadius: 5
+    borderBottomStartRadius: 5,
+    
   },
   challenger : {
     alignItems: 'center',

@@ -5,6 +5,7 @@ import ButtonStart from '../../components/Button';
 import Challengers from '../../components/Challengers';
 import Countdown from '../../components/Countdown';
 import ExperienceBar from '../../components/ExperienceBar';
+import ModalChallenger from '../../components/Modal';
 import Profile from '../../components/Profile';
 import { ChallengerContext } from '../../services/context/challenger';
 import {CountdownContext} from '../../services/context/countdown';
@@ -28,8 +29,8 @@ function Home() {
     <View style={styles.container}>
       <View style={styles.profile}>
         <ExperienceBar />
-        <Profile />
-        <Challengers />
+        <Profile style={styles.shadow} />
+        <Challengers style={styles.shadow}/>
         <View style={styles.containerCountdown}>
         <Countdown />
         {hasFinished ? (
@@ -55,7 +56,9 @@ function Home() {
             )}
           </>
         )}
+        
         </View>
+        <ModalChallenger/>
       </View>
     </View>
   );
@@ -74,5 +77,6 @@ const styles = StyleSheet.create({
   },
   containerCountdown : {
     marginTop : 5
-  }
+  },
+  
 });

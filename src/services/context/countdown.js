@@ -1,4 +1,5 @@
-import React, {createContext, useState, useEffect} from 'react';
+import React, {createContext, useState, useEffect, useContext} from 'react';
+import { ChallengerContext } from './challenger';
 
 export const CountdownContext = createContext();
 let Timer;
@@ -9,6 +10,7 @@ export function CountdownProvider({children}) {
   const [hasFinished, setHasFinished] = useState(false);
   const minutes = Math.floor(time / 60);
   const seconds = time % 60;
+  const { setModalVisible } = useContext(ChallengerContext);
 
   function startCountdown() {
     setIsActive(true);
@@ -29,6 +31,7 @@ export function CountdownProvider({children}) {
     } else if (isActive && time === 0) {
       setIsActive(false);
       setHasFinished(true);
+      setModalVisible(true);
     }
   }, [isActive, time]);
 
