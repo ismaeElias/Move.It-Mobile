@@ -10,7 +10,8 @@ export function CountdownProvider({children}) {
   const [hasFinished, setHasFinished] = useState(false);
   const minutes = Math.floor(time / 60);
   const seconds = time % 60;
-  const { setModalVisible } = useContext(ChallengerContext);
+  
+  const { startChallenger } = useContext(ChallengerContext);
 
   function startCountdown() {
     setIsActive(true);
@@ -31,7 +32,7 @@ export function CountdownProvider({children}) {
     } else if (isActive && time === 0) {
       setIsActive(false);
       setHasFinished(true);
-      setModalVisible(true);
+      startChallenger();
     }
   }, [isActive, time]);
 

@@ -1,13 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 import {View, Text, StyleSheet} from 'react-native';
+import { ChallengerContext } from '../../services/context/challenger';
 
 function Challengers() {
+  const { countChallengers } = useContext(ChallengerContext);
+
   return (
     <View style={styles.container}>
       <View style={styles.challenger}>
         <Text style={styles.text}>Desafios completos</Text>
-        <Text style={styles.text}>00</Text>
+        <Text style={styles.text}>{countChallengers || 0}</Text>
       </View>
     </View>
   );

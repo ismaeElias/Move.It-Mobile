@@ -5,7 +5,13 @@ import {ChallengerContext} from '../../services/context/challenger';
 import {CountdownContext} from '../../services/context/countdown';
 
 function ModalChallenger() {
-  const {setModalVisible, modalVisible} = useContext(ChallengerContext);
+  const {
+    setModalVisible,
+    modalVisible,
+    newChallenger,
+    completeChallenger,
+    closeChallenger
+  } = useContext(ChallengerContext);
   const {resetCountdown} = useContext(CountdownContext);
   return (
     <>
@@ -19,20 +25,23 @@ function ModalChallenger() {
           }}>
           <View style={styles.centeredView}>
             <View style={styles.modalView}>
-              <Text style={styles.modalTitle}>Ganhe 400 exp!</Text>
+              <Text style={styles.modalTitle}>
+                Ganhe {newChallenger.amount || 0} exp!
+              </Text>
               <View style={styles.containerChallenger}>
                 <Body width={150} />
-                <Text style={styles.titleChallenger}>Body Challenger!</Text>
+                <Text style={styles.titleChallenger}>
+                  {newChallenger.type.toUpperCase() || ''} Challenger!
+                </Text>
                 <Text style={styles.textChallenger}>
-                  Cruze as pernas e desça com as mãos esticadas em direção ao
-                  chão. Repita o movimento com a outra perna na frente.
+                  {newChallenger.description || ''}
                 </Text>
               </View>
               <View style={styles.containerButtons}>
                 <TouchableOpacity
                   style={styles.button}
                   onPress={() => {
-                    setModalVisible(!modalVisible);
+                    closeChallenger();
                     resetCountdown();
                   }}>
                   <Text style={[styles.textStyle, styles.failedButton]}>
@@ -42,7 +51,7 @@ function ModalChallenger() {
                 <TouchableOpacity
                   style={styles.button}
                   onPress={() => {
-                    setModalVisible(!modalVisible);
+                    completeChallenger();
                     resetCountdown();
                   }}>
                   <Text style={[styles.textStyle, styles.completeButton]}>
@@ -128,10 +137,6 @@ const styles = StyleSheet.create({
   textStyle: {
     color: 'white',
     fontWeight: 'bold',
-    textAlign: 'center',
-  },
-  modalText: {
-    marginBottom: 15,
     textAlign: 'center',
   },
   ImageType: {

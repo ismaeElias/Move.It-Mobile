@@ -1,16 +1,23 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import { ChallengerContext } from '../../services/context/challenger';
 
 function ExperienceBar() {
-  const { experienceToNextLevel } = useContext(ChallengerContext);
-  
+  const { experienceToNextLevel, experienceCurrent } = useContext(ChallengerContext);
+  const [percent , setPercent] = useState(0);
+
+  useEffect(()=> {
+    const percentExperience = (100 * experienceCurrent)/experienceToNextLevel;
+    setPercent(percentExperience);
+    
+  },[experienceCurrent]);
+
   return (
     <View style={styles.container}>
       <Text style={styles.colorText}>0 exp</Text>
         <View style={styles.experienceBar}>
-          <View style={{width: '0%', backgroundColor: '#13c401', height: 10, borderRadius: 5}}></View>
-          <Text style={[styles.experience, styles.colorText,{transform : [{ translateX: -20 }], left: '0%' }] }>0 exp</Text>
+          <View style={{width: `${percent}%`, backgroundColor: '#13c401', height: 10, borderRadius: 5}}></View>
+          <Text style={[styles.experience, styles.colorText,{transform : [{ translateX: -20 }], left: `${percent}%` }] }>{experienceCurrent || 0} exp</Text>
         </View>
       <Text style={styles.colorText}>{experienceToNextLevel} exp</Text>
     </View>

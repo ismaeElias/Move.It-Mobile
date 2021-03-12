@@ -12,7 +12,7 @@ function ButtonStart({title, ativo, terminou}) {
       <TouchableOpacity
         style={{
           padding: 15,
-          backgroundColor: `${ativo || terminou ? 'red' : '#5965E0'}`,
+          backgroundColor: `${ativo || terminou ? '#E83F5B' : '#5965E0'}`,
           alignItems: 'center',
           justifyContent: 'center',
           width: '100%',

@@ -10,9 +10,11 @@ import Profile from '../../components/Profile';
 import { ChallengerContext } from '../../services/context/challenger';
 import {CountdownContext} from '../../services/context/countdown';
 
+
+
 function Home() {
   const {isActive, hasFinished} = useContext(CountdownContext);
-  const { setUser } = useContext(ChallengerContext);
+  const { setUser, modalVisible } = useContext(ChallengerContext);
 
   async function handlerGetUser(){
     const value = await AsyncStorage.getItem('@User_info');
@@ -56,10 +58,9 @@ function Home() {
             )}
           </>
         )}
-        
         </View>
-        <ModalChallenger/>
       </View>
+      {modalVisible ? <ModalChallenger/> : null}
     </View>
   );
 }
