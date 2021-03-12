@@ -1,6 +1,5 @@
 import React, {createContext, useState} from 'react';
 import challenger from '../../challenges.json';
-import { Alert } from 'react-native';
 
 export const ChallengerContext = createContext();
 
@@ -10,6 +9,7 @@ export function ChallengerProvider({children}) {
   const [experienceCurrent, setExperienceCurrent] = useState(0);
   const [countChallengers, setCountChallengers] = useState(0);
   const [modalVisible, setModalVisible] = useState(false);
+  const [isLevelUp, setIsLevelUp] = useState(false);
   const [newChallenger, setNewChallenger] = useState(null);
 
   const experienceToNextLevel = Math.pow((level + 1) * 4, 2);
@@ -25,6 +25,7 @@ export function ChallengerProvider({children}) {
 
   function levelUp(){
     setLevel(level + 1);
+    setIsLevelUp(true);
   }
 
   function closeChallenger(){
@@ -66,7 +67,9 @@ export function ChallengerProvider({children}) {
         experienceCurrent,
         completeChallenger,
         countChallengers,
-        closeChallenger
+        closeChallenger,
+        isLevelUp,
+        setIsLevelUp
       }}>
       {children}
     </ChallengerContext.Provider>

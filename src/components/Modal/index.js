@@ -1,6 +1,8 @@
 import React, {useContext} from 'react';
 import {Modal, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import Body from '../../public/body.svg';
+import Eye from '../../public/eye.svg';
+
 import {ChallengerContext} from '../../services/context/challenger';
 import {CountdownContext} from '../../services/context/countdown';
 
@@ -29,7 +31,7 @@ function ModalChallenger() {
                 Ganhe {newChallenger.amount || 0} exp!
               </Text>
               <View style={styles.containerChallenger}>
-                <Body width={150} />
+                {newChallenger.type === 'body' ? <Body width={150} /> : <Eye width={150} /> }
                 <Text style={styles.titleChallenger}>
                   {newChallenger.type.toUpperCase() || ''} Challenger!
                 </Text>

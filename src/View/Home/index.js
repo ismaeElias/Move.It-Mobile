@@ -6,6 +6,7 @@ import Challengers from '../../components/Challengers';
 import Countdown from '../../components/Countdown';
 import ExperienceBar from '../../components/ExperienceBar';
 import ModalChallenger from '../../components/Modal';
+import ModalLevelUp from '../../components/ModalLevelUp';
 import Profile from '../../components/Profile';
 import { ChallengerContext } from '../../services/context/challenger';
 import {CountdownContext} from '../../services/context/countdown';
@@ -14,7 +15,7 @@ import {CountdownContext} from '../../services/context/countdown';
 
 function Home() {
   const {isActive, hasFinished} = useContext(CountdownContext);
-  const { setUser, modalVisible } = useContext(ChallengerContext);
+  const { setUser, modalVisible, isLevelUp } = useContext(ChallengerContext);
 
   async function handlerGetUser(){
     const value = await AsyncStorage.getItem('@User_info');
@@ -61,6 +62,7 @@ function Home() {
         </View>
       </View>
       {modalVisible ? <ModalChallenger/> : null}
+      {isLevelUp ? <ModalLevelUp/> : null}
     </View>
   );
 }
